@@ -43,14 +43,14 @@ class GymLogCubit extends Cubit<GymLogState> {
     await _repository.addWorkout(entry);
 
     final entries = _repository.getAllWorkouts();
-    final randomMessage =
-        motivationMessages[Random().nextInt(motivationMessages.length)];
+    // final randomMessage =
+    //     motivationMessages[Random().nextInt(motivationMessages.length)];
 
     emit(
       GymLogSaved(
         selectedExercises: {},
         history: entries,
-        motivationMessage: randomMessage,
+        motivationMessage: null,
       ),
     );
   }

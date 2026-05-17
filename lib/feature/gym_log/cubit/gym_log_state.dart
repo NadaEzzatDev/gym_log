@@ -37,7 +37,7 @@ class GymLogLoaded extends GymLogState {
 }
 
 class GymLogSaved extends GymLogState {
-  final String motivationMessage;
+  final String? motivationMessage;
 
   const GymLogSaved({
     required super.selectedExercises,
