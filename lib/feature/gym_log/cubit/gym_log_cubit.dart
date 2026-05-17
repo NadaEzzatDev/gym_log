@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../data/models/exercise_type.dart';
@@ -14,10 +15,7 @@ class GymLogCubit extends Cubit<GymLogState> {
 
   void loadHistory() {
     final entries = _repository.getAllWorkouts();
-    emit(GymLogLoaded(
-      selectedExercises: {},
-      history: entries,
-    ));
+    emit(GymLogLoaded(selectedExercises: {}, history: entries));
   }
 
   void toggleExercise(ExerciseType exercise) {
@@ -31,10 +29,7 @@ class GymLogCubit extends Cubit<GymLogState> {
       selected.add(exercise);
     }
 
-    emit(GymLogLoaded(
-      selectedExercises: selected,
-      history: state.history,
-    ));
+    emit(GymLogLoaded(selectedExercises: selected, history: state.history));
   }
 
   Future<void> saveWorkout() async {
@@ -51,18 +46,17 @@ class GymLogCubit extends Cubit<GymLogState> {
     final randomMessage =
         motivationMessages[Random().nextInt(motivationMessages.length)];
 
-    emit(GymLogSaved(
-      selectedExercises: {},
-      history: entries,
-      motivationMessage: randomMessage,
-    ));
+    emit(
+      GymLogSaved(
+        selectedExercises: {},
+        history: entries,
+        motivationMessage: randomMessage,
+      ),
+    );
   }
 
   void dismissMessage() {
-    emit(GymLogLoaded(
-      selectedExercises: {},
-      history: state.history,
-    ));
+    emit(GymLogLoaded(selectedExercises: {}, history: state.history));
   }
 
   Future<void> deleteWorkout(WorkoutEntry entry) async {
@@ -70,9 +64,11 @@ class GymLogCubit extends Cubit<GymLogState> {
 
     final entries = _repository.getAllWorkouts();
 
-    emit(GymLogLoaded(
-      selectedExercises: state.selectedExercises,
-      history: entries,
-    ));
+    emit(
+      GymLogLoaded(
+        selectedExercises: state.selectedExercises,
+        history: entries,
+      ),
+    );
   }
 }

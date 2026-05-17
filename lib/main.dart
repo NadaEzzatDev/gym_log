@@ -18,9 +18,9 @@ class GymLogApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>  GymLogCubit(
+      create: (context) => GymLogCubit(
         getit<WorkoutRepository>(),
-      ),
+      )..loadHistory(),
       child: MaterialApp(
         title: 'Gym Log',
         debugShowCheckedModeBanner: false,
