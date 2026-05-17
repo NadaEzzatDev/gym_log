@@ -5,15 +5,15 @@ part 'exercise_type.g.dart';
 @HiveType(typeId: 0)
 enum ExerciseType {
   @HiveField(0)
-  arms('💪', 'دراعات'),
+  arms('💪', 'Arms'),
   @HiveField(1)
-  legs('🦵', 'رجلين'),
+  legs('🦵', 'Legs'),
   @HiveField(2)
-  chest('🏋️', 'صدر'),
+  chest('🏋️', 'Chest'),
   @HiveField(3)
-  cardio('🏃', 'كارديو'),
+  cardio('🏃', 'Cardio'),
   @HiveField(4)
-  core('🔥', 'بطن');
+  core('🔥', 'Core');
 
   final String emoji;
   final String label;
