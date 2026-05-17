@@ -1,36 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
-import 'data/repositories/hive_workout_repository.dart';
-import 'data/repositories/workout_repository.dart';
-import 'models/exercise_type.dart';
-import 'models/workout_entry.dart';
-import 'cubit/gym_log_cubit.dart';
-import 'screens/gym_log_screen.dart';
+import 'core/setup_service_locator.dart';
+import 'feature/gym_log/cubit/gym_log_cubit.dart';
+import 'feature/gym_log/data/repositories/workout_repository.dart';
+import 'feature/gym_log/screens/gym_log_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Hive.initFlutter();
-  Hive.registerAdapter(ExerciseTypeAdapter());
-  Hive.registerAdapter(WorkoutEntryAdapter());
-
-  final workoutBox = await Hive.openBox<WorkoutEntry>('workouts');
-  final WorkoutRepository repository = HiveWorkoutRepository(workoutBox);
-
-  runApp(GymLogApp(repository: repository));
+  await setupServiceLocator();
+  runApp(const GymLogApp());
 }
 
 class GymLogApp extends StatelessWidget {
-  final WorkoutRepository repository;
-
-  const GymLogApp({super.key, required this.repository});
+  const GymLogApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GymLogCubit(repository)..loadHistory(),
+      create: (context) =>  GymLogCubit(
+        getit<WorkoutRepository>(),
+      ),
       child: MaterialApp(
         title: 'Gym Log',
         debugShowCheckedModeBanner: false,

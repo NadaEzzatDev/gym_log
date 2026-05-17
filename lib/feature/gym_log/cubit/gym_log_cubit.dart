@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../data/models/exercise_type.dart';
+import '../data/models/workout_entry.dart';
 import '../data/repositories/workout_repository.dart';
-import '../models/exercise_type.dart';
-import '../models/workout_entry.dart';
 import 'gym_log_state.dart';
 import 'motivation_message.dart';
 

@@ -45,6 +45,9 @@ dependencies:
   # Video player
   video_player: ^2.9.2
 
+  # Dependency injection
+  get_it: ^8.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

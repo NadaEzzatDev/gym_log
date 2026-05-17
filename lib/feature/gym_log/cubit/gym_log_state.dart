@@ -1,5 +1,5 @@
-import '../models/exercise_type.dart';
-import '../models/workout_entry.dart';
+import '../data/models/exercise_type.dart';
+import '../data/models/workout_entry.dart';
 
 sealed class GymLogState {
   final Set<ExerciseType> selectedExercises;
